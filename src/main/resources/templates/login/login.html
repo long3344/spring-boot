@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录</title>
+    <script src="../../statics/common/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<form style="margin:0 auto" class="sui-form form-horizontal" >
+
+    <div class="center">
+        <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
+        <div class="control-group">
+            <label for="userName" class="control-label">用户名：</label>
+            <div class="controls">
+                <input  th:value="(${admin}!=null)? ${admin.username}: '' " type="text" id="userName" placeholder="userName"/>
+
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="password" class="control-label">密码：</label>
+            <div class="controls">
+                <input th:value="(${admin}!=null)? ${admin.password}: '' " type="password" id="password" placeholder="Password"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <label data-toggle="checkbox" class="checkbox-pretty inline">
+                    <input type="checkbox" name="remember-me"/><span>记住我</span>
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <button type="submit" class="sui-btn btn-primary login">登录</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var flag =$("#password").val();
+        if(flag==null||flag==''){
+            $("input[name=remember-me]").attr("checked",false);
+        }else{
+            $("input[name=remember-me]").attr("checked",true);
+        }
+
+        $(".login").on("click",function () {
+            if(_submit()) {
+                window.location.href = "/wechat/loginSuccess";
+                window.event.returnValue=false;
+            }
+
+        })
+    });
+    function _submit() {
+        var flag =false;
+        datas={};
+        datas.username=$("#userName").val();
+        datas.password=$("#password").val();
+        datas.userId=$("#userId").val();
+        datas.remember=$("input[name=remember-me]:checked").next().text();
+        if(!datas.username) {
+            alert("请输入用户名！");
+            return false;
+        }
+        if(!datas.password){
+            alert("请输入正确的密码！");
+            return false;
+        }
+        if(!datas.userId){
+            alert("~!!");
+        }
+        $.ajax({
+            type: 'post',
+            url: "/wechat/login",
+            async: false,
+            data: datas,
+            success: function (data) {
+                console.log(data);
+                if(data.status=="ok"){
+                    alert("登录成功！");
+                    flag=true;
+                    window.location.href = "/wechat/loginSuccess";
+                }else {
+                    alert("没有该用户！")
+                    flag=false;
+                }
+            }
+        });
+        return flag;
+    }
+
+</script>

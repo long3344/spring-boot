@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录成功</title>
+    <script src="../../statics/common/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<H1 th:text="(${admin}!=null)? ${admin.username}: '' " id="admin" style="color: darkred">欢迎!</H1>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var ee = "欢迎！";
+        var text =$("#admin").text();
+        ee+=text;
+        $("#admin").text(ee);
+    })
+</script>
+

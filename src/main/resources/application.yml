@@ -1,0 +1,50 @@
+spring:
+  # Server settings
+  server:
+      port:8080
+      address:localhost
+
+  # DATASOURCE
+  jdbc:
+      dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+      url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&amp;charaterEncoding=utf-8
+      databaseName: wechat
+      serverName: 127.0.0.1
+      username: root
+      password: root
+      cachePrepStmts: true
+      prepStmtsSize: 250
+      prepStmtsCacheSqlLimit: 2048
+      userServerPrepStmts: true
+  thymeleaf:
+      cache: false
+      cache-period: 0
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      content-type: text/html
+      mode: HTML5
+  template:
+      cache: false
+  # SPRING PROFILES
+  spring:
+      # HTTP ENCODING
+      http:
+          encoding.charset: UTF-8
+          encoding.enable: true
+          encoding.force: true
+
+  # MyBatis
+  mybatis:
+      typeAliasesPackage: com.wechat.dao
+      mapperLocations: classpath:/mapper/*.xml
+      configLocation: classpath:/mybatis-config.xml
+      configuration:
+              map-underscore-to-camel-case: true
+              default-fetch-size: 100
+              default-statement-timeout: 30
+
+  # LOGGING
+  logging:
+      level:
+         com.ibatis:DEBUG
