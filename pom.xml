@@ -177,6 +177,22 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional><!--只有设置为true时才会热启动，即当修改了html、css、js等这些静态资源后不用重启项目直接刷新即可-->
         </dependency>
+        <!--http-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.2</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
