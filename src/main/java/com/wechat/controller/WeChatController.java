@@ -125,16 +125,15 @@ public class WeChatController {
         return "demo/thymeleaf_demo";
     }
 
-    @RequestMapping("/addAdmin")
-    public ModelAndView addAdmin(){
+    @RequestMapping("/findAdmin")
+    @ResponseBody
+    public Admin findAdmin(){
+        Admin admin =new Admin();
+        admin.setId(1);
+         Admin admi=wechatService.findAdmin(admin);
 
-        Admin admin=new Admin();
-        admin.setUsername("admin");
-        admin.setPassword("123456");
-        admin.setPhone("12345678910");
-        admin.setQq("10723362");
-        wechatService.addAdmin(admin);
-        return new ModelAndView("login/login");
 
+        return admi;
+//        return new ModelAndView("login/login");
     }
 }

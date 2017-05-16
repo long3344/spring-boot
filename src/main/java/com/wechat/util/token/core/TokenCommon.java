@@ -6,10 +6,13 @@ import com.wechat.util.token.request.AccessTokenRequestParam;
 import com.wechat.util.token.response.AccessTokenResponseParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 描述：token的核心类，包括获取token的请求，存放token到缓存，从缓存获取token
@@ -27,15 +30,19 @@ public class TokenCommon {
 
     private static Integer TIMEOUT=60;
 
+    //从缓存中根据key获取token
     private static String TENCENT_ACCESS_TOKEN="tencent_access_token";
 
-    private static String GRANT_TYPE="client_credential";
+    public static String GRANT_TYPE="client_credential";
 
     //todo
     //这里的id和appsecret写死，测试号的信息，实际是要从数据库获取，
     private static String appID="wx475d2ef1d504a985";
 
     private static String appsecret="54b88ebe1e920f1d4bb105700098533e";
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
 
     /**
@@ -57,7 +64,7 @@ public class TokenCommon {
 
             AccessTokenResponseParam responseParam= JacksonUtils.json2pojo(jsonResult,AccessTokenResponseParam.class);
             accessToken=responseParam.getAccessToken();
-            //todo 把获取的token放进缓存中
+            setToRedisAccessToken(TENCENT_ACCESS_TOKEN);
 
         } catch (IOException e) {
             logger.error("获取token失败,错误信息：",e);
@@ -69,21 +76,20 @@ public class TokenCommon {
     }
 
     /**
-     * todo
      * 把数据放进缓存
      * @param tokenStr
      */
-    public void setToCache(String tokenStr){
-
+    public void setToRedisAccessToken(String tokenStr){
+        stringRedisTemplate.opsForValue().set(TENCENT_ACCESS_TOKEN,tokenStr,TIMEOUT, TimeUnit.SECONDS);
     }
 
     /**
-     * todo
-     * 从缓存中取出数据
-     * @param tokenStr
+     * 根据key从缓存中取出数据
+     *
      */
-    public void getFromCache(String tokenStr){
+    public String getFromRedisAccessToken(){
 
+        return stringRedisTemplate.opsForValue().get(TENCENT_ACCESS_TOKEN);
     }
 
 }

@@ -13,4 +13,6 @@ public interface WechatService {
     public int addAdmin(Admin admin);
 
     public Admin findAdminByAdmin(String username,String password);
+
+    public Admin findAdmin(Admin admin);
 }

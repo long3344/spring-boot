@@ -1,4 +1,22 @@
 spring:
+#redis服务器相关配置
+  redis:
+      sentinel:
+        master: mymaster
+        nodes:
+      host: 127.0.0.1
+      password:
+      port: 6379
+      pool:
+        min-idle: 20
+        max-idle: 20
+        max-active: 100
+        max-wait: -1
+      timeout: 1000
+      #通过@Cacheable代理的缓存默认失效时间(单位：秒)
+      cacheableDefaultExpSec: 120
+      #设置自定义的缓存失效时间 example1:72，example2:720，...
+      expires: weixinjsapi:7200
   # Server settings
   server:
       port:8080
@@ -7,11 +25,11 @@ spring:
   # DATASOURCE
   jdbc:
       dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-      url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&amp;charaterEncoding=utf-8
-      databaseName: wechat
-      serverName: 127.0.0.1
-      username: root
-      password: root
+      url: 'jdbc:mysql://localhost:3306/wechat?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=true'
+      databaseName: 'wechat'
+      serverName: '127.0.0.1'
+      username: 'root'
+      password: 'root'
       cachePrepStmts: true
       prepStmtsSize: 250
       prepStmtsCacheSqlLimit: 2048
@@ -36,10 +54,11 @@ spring:
 
   # MyBatis
   mybatis:
-      typeAliasesPackage: com.wechat.dao
-      mapperLocations: classpath:/mapper/*.xml
-      configLocation: classpath:/mybatis-config.xml
+      typeAliasesPackage: com.wechat.model
+      mapperLocations: classpath:mapper/*.xml
+      #configLocation: classpath:/mybatis-config.xml
       configuration:
+              callSettersOnNulls: true
               map-underscore-to-camel-case: true
               default-fetch-size: 100
               default-statement-timeout: 30
