@@ -67,3 +67,8 @@ spring:
   logging:
       level:
          com.ibatis:DEBUG
+mq:
+  namesrvAddr: 172.20.10.32:9876
+  producerGroup: CommonsProducer
+  timeout: 3000
+  retryTimes: 5

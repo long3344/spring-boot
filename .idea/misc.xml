@@ -4,7 +4,22 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-broker/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-client/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-common/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-example/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-filtersrv/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-namesrv/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-remoting/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-srvutil/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-store/pom.xml" />
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-tools/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">

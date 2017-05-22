@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://D:/rocketMQ/RocketMQ-3.5.8/rocketmq-all.iml" filepath="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-all.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot.iml" filepath="$PROJECT_DIR$/spring-boot.iml" />
     </modules>
   </component>

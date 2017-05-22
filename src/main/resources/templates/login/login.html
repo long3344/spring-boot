@@ -4,41 +4,48 @@
     <meta charset="UTF-8"/>
     <title>登录</title>
     <script src="../../statics/common/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="../../statics/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-<form style="margin:0 auto" class="sui-form form-horizontal" >
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <form role="form">
+                <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
+                <div class="control-group">
+                    <label for="userName" class="control-label">用户名：</label>
+                    <div class="controls">
+                        <input  th:value="(${admin}!=null)? ${admin.username}: '' " type="text" id="userName" placeholder="userName"/>
 
-    <div class="center">
-        <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
-        <div class="control-group">
-            <label for="userName" class="control-label">用户名：</label>
-            <div class="controls">
-                <input  th:value="(${admin}!=null)? ${admin.username}: '' " type="text" id="userName" placeholder="userName"/>
-
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="password" class="control-label">密码：</label>
-            <div class="controls">
-                <input th:value="(${admin}!=null)? ${admin.password}: '' " type="password" id="password" placeholder="Password"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <label data-toggle="checkbox" class="checkbox-pretty inline">
-                    <input type="checkbox" name="remember-me"/><span>记住我</span>
-                </label>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label"></label>
-            <div class="controls">
-                <button type="submit" class="sui-btn btn-primary login">登录</button>
-            </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="password" class="control-label">密码：</label>
+                    <div class="controls">
+                        <input th:value="(${admin}!=null)? ${admin.password}: '' " type="password" id="password" placeholder="Password"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls">
+                        <label data-toggle="checkbox" class="checkbox-pretty inline">
+                            <input type="checkbox" name="remember-me"/><span>记住我</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls">
+                        <button type="submit" class="sui-btn btn-primary login">登录</button>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="sui-btn btn-primary login">注册</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</form>
+</div>
 </body>
 </html>
 <script>
@@ -74,7 +81,6 @@
             return false;
         }
         if(!datas.userId){
-            alert("~!!");
         }
         $.ajax({
             type: 'post',
@@ -84,7 +90,6 @@
             success: function (data) {
                 console.log(data);
                 if(data.status=="ok"){
-                    alert("登录成功！");
                     flag=true;
                     window.location.href = "/wechat/loginSuccess";
                 }else {
