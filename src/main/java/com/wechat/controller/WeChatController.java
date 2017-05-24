@@ -1,5 +1,7 @@
 package com.wechat.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wechat.model.Admin;
 import com.wechat.service.wechat.WechatService;
 import com.wechat.util.SessionUtil;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +37,12 @@ public class WeChatController {
 
     @Autowired
     private WechatService wechatService;
+
+
+    @RequestMapping("/toRegister")
+    public String toRegister(){
+        return "login/register";
+    }
 
 
     //登录页面访问
@@ -71,7 +80,15 @@ public class WeChatController {
         return mv;
     }
 
-    /*测试登录1*/
+    /**
+     * 登录
+     * @param response
+     * @param username
+     * @param password
+     * @param id
+     * @param remember
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
     public Map<String,Object> login(HttpServletResponse response, @RequestParam("username")String username, @RequestParam("password") String password,
@@ -130,9 +147,10 @@ public class WeChatController {
     public Admin findAdmin(){
         Admin admin =new Admin();
         admin.setId(1);
+//        PageHelper.startPage(1,10);
          Admin admi=wechatService.findAdmin(admin);
 
-
+//        PageInfo<?> pageInfo = new PageInfo<>(new ArrayList<Admin>());
         return admi;
 //        return new ModelAndView("login/login");
     }

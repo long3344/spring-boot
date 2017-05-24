@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../../statics/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
+<nav class="navbar navbar-inverse" style="background-color: #0F2232;" role="navigation">
+    <span>
+    </span>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <li><a href="/wechat/toLogin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+    </ul>
+</nav>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -35,11 +43,9 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label"></label>
-                    <div class="controls">
-                        <button type="submit" class="sui-btn btn-primary login">登录</button>
-                    </div>
-                    <div class="controls">
-                        <button type="submit" class="sui-btn btn-primary login">注册</button>
+                    <div class="col-md-12 column">
+                        <button type="submit" id="submit" class="btn btn-default btn-primary">登录</button>
+                        <button type="submit" class="btn btn-default btn-primary">注册</button>
                     </div>
                 </div>
             </form>
@@ -57,7 +63,7 @@
             $("input[name=remember-me]").attr("checked",true);
         }
 
-        $(".login").on("click",function () {
+        $("#submit").on("click",function () {
             if(_submit()) {
                 window.location.href = "/wechat/loginSuccess";
                 window.event.returnValue=false;

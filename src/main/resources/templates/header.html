@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="../statics/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="../statics/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../statics/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color: #0F2232;" role="navigation">
+    <span>
+        <h3 id="admin" style="color: #349E49;margin-left: 5%;">欢迎!<span th:text="(${admin}!=null)? ${admin.username}: '' "></span></h3>
+    </span>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 2%;">
+        <li><a href="/wechat/toRegister"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <li><a href="/wechat/toLogin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+    </ul>
+</nav>
+</body>
+</html>
