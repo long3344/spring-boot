@@ -85,14 +85,13 @@ public class WeChatController {
      * @param response
      * @param username
      * @param password
-     * @param id
      * @param remember
      * @return
      */
     @RequestMapping("/login")
     @ResponseBody
     public Map<String,Object> login(HttpServletResponse response, @RequestParam("username")String username, @RequestParam("password") String password,
-                                    @RequestParam("userId")Integer id, @RequestParam("remember")String remember) {
+                                     @RequestParam(value = "remember",required = false)String remember) {
         logger.info("用户开始登录！");
         try {
             //用户登录，不管是否点击记住我，都要存到session中去
@@ -101,7 +100,7 @@ public class WeChatController {
             SessionUtil.getSession().setAttribute("admin",admin);
 
             //用户点击了记住我，将值存在Cookie中返回
-            if(remember.equals("记住我")){
+            if(null!=remember&&remember.equals("记住我")){
                 Cookie cookie = new Cookie("username",admin.getUsername());
                 Cookie cookie1 = new Cookie("password",admin.getPassword());
                 response.addCookie(cookie);
@@ -119,6 +118,7 @@ public class WeChatController {
                 return resultMap;
             }else {
                 resultMap.put("status","error");
+                resultMap.put("errorMsg","登录失败，用户名或密码不正确！");
                 return resultMap;
             }
         } catch (Exception e) {
@@ -128,12 +128,12 @@ public class WeChatController {
     }
 
     //登录成功跳转页面（服务内部调用）
-    @RequestMapping("/loginSuccess")
+    @RequestMapping("/index")
     public ModelAndView index1() {
         Admin admin = (Admin) SessionUtil.getSession().getAttribute("admin");
         ModelAndView mv = new ModelAndView();
         mv.addObject("admin",admin);
-        mv.setViewName("login/loginSuccess");
+        mv.setViewName("login/index");
         return mv;
     }
 

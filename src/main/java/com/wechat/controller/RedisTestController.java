@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/redisTest")
+public class RedisTestController {
 
     @Autowired
     private RedisServiceImpl redisService;

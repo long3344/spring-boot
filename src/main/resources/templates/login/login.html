@@ -5,18 +5,74 @@
     <title>登录</title>
     <script src="../../statics/common/jquery-1.8.3.min.js"></script>
     <link rel="stylesheet" href="../../statics/bootstrap/css/bootstrap.min.css"/>
+    <script src="../../statics/bootstrap/js/bootstrap.js"></script>
 </head>
-<body>
+<body background="../../statics/images/login/bg.jpg">
 <nav class="navbar navbar-inverse" style="background-color: #0F2232;" role="navigation">
     <span>
     </span>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-        <li><a href="/wechat/toLogin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#loginModel"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModel" data-whatever="@mdo">登录A</button>-->
     </ul>
 </nav>
 <div class="container">
-    <div class="row clearfix">
+
+    <div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
+                        <div class="control-group">
+                            <label for="userName" class="control-label">用户名：</label>
+                            <div class="controls">
+                                <input  th:value="(${admin}!=null)? ${admin.username}: '' " type="text" id="userName" placeholder="userName"/>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="password" class="control-label">密码：</label>
+                            <div class="controls">
+                                <input th:value="(${admin}!=null)? ${admin.password}: '' " type="password" id="password" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="controls">
+                                <label data-toggle="checkbox" class="checkbox-pretty inline">
+                                    <input type="checkbox" name="remember-me"/><span>记住我</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="col-md-12 column">
+                                <button type="submit" id="submit" class="btn btn-default btn-primary">登录</button>
+                                <button type="submit" class="btn btn-default btn-primary">注册</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--<div class="row clearfix">
         <div class="col-md-12 column">
             <form role="form">
                 <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
@@ -50,8 +106,9 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>-->
 </div>
+
 </body>
 </html>
 <script>
@@ -65,7 +122,7 @@
 
         $("#submit").on("click",function () {
             if(_submit()) {
-                window.location.href = "/wechat/loginSuccess";
+                window.location.href = "/wechat/index";
                 window.event.returnValue=false;
             }
 
@@ -97,7 +154,7 @@
                 console.log(data);
                 if(data.status=="ok"){
                     flag=true;
-                    window.location.href = "/wechat/loginSuccess";
+                    window.location.href = "/wechat/index";
                 }else {
                     alert("没有该用户！")
                     flag=false;
