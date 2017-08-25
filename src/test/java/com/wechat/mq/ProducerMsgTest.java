@@ -46,7 +46,7 @@ public class ProducerMsgTest {
         Message message = new Message();
         message.setTopic("OrderTopic");
         message.setTags("AAA");
-        message.setBody("hello,world!".getBytes());
+        message.setBody("*********这是测试数据**********".getBytes());
         SendResult result = producer.send(message);
         logger.info("消息发送结果:{}",result);
     }
@@ -54,7 +54,7 @@ public class ProducerMsgTest {
     @Test
     public void getMsg(){
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("PushConsumer");
-        consumer.setNamesrvAddr("172.20.10.32:9876");
+        consumer.setNamesrvAddr("192.168.211.223:9876");
         try{
             consumer.subscribe("OrderTopic","AAA");
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);

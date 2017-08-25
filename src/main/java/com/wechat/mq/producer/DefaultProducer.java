@@ -38,7 +38,7 @@ public class DefaultProducer implements MQProducer {
 
     @PostConstruct
     public DefaultMQProducer init() throws MQClientException {
-        logger.info("create and start default mq producer,configuration is {}",config);
+        logger.info("创建并启动 default mq producer,配置是： {}",config);
         producer = new DefaultMQProducer(config.getProducerGroup());
         producer.setNamesrvAddr(config.getNamesrvAddr());
         producer.setClientIP(config.getClientIP());
@@ -56,7 +56,7 @@ public class DefaultProducer implements MQProducer {
     @PreDestroy
     @Override
     public void shutdown() {
-        logger.info("default mq producer connection is closing.");
+        logger.info("default mq producer 连接 正在关闭.");
         producer.shutdown();
     }
 
