@@ -42,4 +42,9 @@ public class WechatServiceImpl implements WechatService {
         logger.info("开始缓存数据！");
         return adminMapper.selectByPrimaryKey(admin.getId());
     }
+
+    @Override
+    public List<Admin> findAllAdmin(Admin admin) {
+        return adminMapper.selectAllAdmin();
+    }
 }

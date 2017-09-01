@@ -8,12 +8,12 @@ import com.alibaba.rocketmq.common.message.Message;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/5/15.
+ * Created by TWL on 2017/5/15.
  */
 public class Product {
     public static void main(String[] args) throws MQClientException {
-        DefaultMQProducer producer = new DefaultMQProducer("rmq-group");
-        producer.setNamesrvAddr("172.20.10.251:9876");
+        DefaultMQProducer producer = new DefaultMQProducer("CommonsProducer");
+        producer.setNamesrvAddr("172.20.10.213:9876");
         producer.setInstanceName("producer");
         producer.start();
         try {

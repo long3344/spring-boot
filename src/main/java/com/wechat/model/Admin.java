@@ -3,7 +3,7 @@ package com.wechat.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Admin implements Serializable {
+public class Admin extends Page implements Serializable {
     private Integer id;
 
     private String username;

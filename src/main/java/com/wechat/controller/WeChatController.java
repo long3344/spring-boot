@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -148,10 +149,20 @@ public class WeChatController {
         Admin admin =new Admin();
         admin.setId(1);
 //        PageHelper.startPage(1,10);
+        PageHelper.startPage(admin.getPageNum(),admin.getPageSize());
          Admin admi=wechatService.findAdmin(admin);
 
 //        PageInfo<?> pageInfo = new PageInfo<>(new ArrayList<Admin>());
         return admi;
 //        return new ModelAndView("login/login");
+    }
+
+    @RequestMapping("/findAllAdmin")
+    @ResponseBody
+    public List<Admin> findAllAdmin(){
+        Admin admin = new Admin();
+        PageHelper.startPage(admin.getPageNum(),admin.getPageSize());
+        List<Admin> userList=wechatService.findAllAdmin(admin);
+        return userList;
     }
 }

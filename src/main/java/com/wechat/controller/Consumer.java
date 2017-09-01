@@ -17,7 +17,7 @@ public class Consumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 "rmq-group");
 
-        consumer.setNamesrvAddr("172.20.10.32:9876");
+        consumer.setNamesrvAddr("172.20.10.213:9876");
         consumer.setInstanceName("consumer");
         consumer.subscribe("TopicA-test", "TagA");
 

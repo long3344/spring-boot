@@ -1,9 +1,9 @@
 package com.wechat.exception;
 
 /**
- * 文件名:com.jk51.exception.BusinessLogicException
+ * 文件名:
  * 描述: 业务逻辑异常，通常用于业务处理过程中，不能满足业务处理规则引发的异常
- * 作者: wangzhengfei
+ * 作者:
  * 创建日期: 2017-01-16
  * 修改记录:
  */

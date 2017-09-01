@@ -17,10 +17,12 @@ spring:
       cacheableDefaultExpSec: 120
       #设置自定义的缓存失效时间 example1:72，example2:720，...
       expires: weixinjsapi:7200
+      database: 1
   # Server settings
+  #  项目启动地址：http://localhost:8080/wechat/toLogin
   server:
       port:8080
-      address:localhost
+      address:127.0.0.1
 
   # DATASOURCE
   jdbc:
@@ -34,6 +36,7 @@ spring:
       prepStmtsSize: 250
       prepStmtsCacheSqlLimit: 2048
       userServerPrepStmts: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   thymeleaf:
       cache: false
       cache-period: 0
@@ -65,6 +68,7 @@ spring:
 
   # LOGGING
   logging:
+      config : classpath:logback-boot.xml
       level:
          com.ibatis:DEBUG
 mq:
