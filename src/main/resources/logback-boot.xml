@@ -3,7 +3,7 @@
 
     <!-- 文件输出格式 -->
     <property name="PATTERN" value="%yellow(%-12(%d{HH:mm:ss.SSS})) |-%highlight(%-5level) [%thread] %cyan(%c [%L]) -| %msg%n"/>
-    <property name="project_name" value="jk-service"></property>
+    <property name="project_name" value="spring-boot"></property>
 
     <!--文件存放目录-->
     <property name="log_root" value="/var/log/java/"></property>
@@ -20,7 +20,7 @@
         <logger name="com.wechat" level="trace"/>
         <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>debug</level>
+                <level>error</level>
             </filter>
             <encoder>
                 <pattern>${PATTERN}</pattern>

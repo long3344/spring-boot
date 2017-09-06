@@ -74,8 +74,8 @@ public class DataBaseConfiguration implements EnvironmentAware {
         druidDataSource.setTestOnBorrow(Boolean.parseBoolean(resolver.getProperty("testOnBorrow")));
         druidDataSource.setTestOnReturn(Boolean.parseBoolean(resolver.getProperty("testOnReturn")));
         druidDataSource.setPoolPreparedStatements(Boolean.parseBoolean(resolver.getProperty("poolPreparedStatements")));
-        druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(Integer.parseInt(resolver.getProperty("maxPoolPreparedStatementPerConnectionSize")));
-        druidDataSource.setFilters(resolver.getProperty("filters"));*/
+        druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(Integer.parseInt(resolver.getProperty("maxPoolPreparedStatementPerConnectionSize")));*/
+        druidDataSource.setFilters(resolver.getProperty("filters"));
         return druidDataSource;
     }
 
@@ -87,9 +87,9 @@ public class DataBaseConfiguration implements EnvironmentAware {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
 
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
     }
