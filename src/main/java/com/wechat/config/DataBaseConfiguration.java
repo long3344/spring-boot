@@ -91,13 +91,7 @@ public class DataBaseConfiguration implements EnvironmentAware {
 
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 
-        return sqlSessionFactoryBean.getObject();iuyuu
-
-                \‘||’||、
-
-
-
-
+        return sqlSessionFactoryBean.getObject();
     }
 
 
