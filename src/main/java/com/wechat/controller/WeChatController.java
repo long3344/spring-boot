@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wechat.model.Admin;
 import com.wechat.service.wechat.WechatService;
+import com.wechat.util.ParameterUtil;
 import com.wechat.util.SessionUtil;
 import org.apache.catalina.Session;
 import org.slf4j.Logger;
@@ -128,6 +129,14 @@ public class WeChatController {
         return null;
     }
 
+    @RequestMapping("/regist")
+    public String regist(HttpServletRequest request,Map<String,Object> param){
+        Map<String,Object> aaa= ParameterUtil.getParameterMap(request);
+        logger.info("开始注册,注册信息===>{}",aaa);
+         int result =wechatService.registMember(aaa);
+        return "";
+    }
+
     //登录成功跳转页面（服务内部调用）
     @RequestMapping("/index")
     public ModelAndView index1() {
@@ -155,14 +164,5 @@ public class WeChatController {
 //        PageInfo<?> pageInfo = new PageInfo<>(new ArrayList<Admin>());
         return admi;
 //        return new ModelAndView("login/login");
-    }
-
-    @RequestMapping("/findAllAdmin")
-    @ResponseBody
-    public List<Admin> findAllAdmin(){
-        Admin admin = new Admin();
-        PageHelper.startPage(admin.getPageNum(),admin.getPageSize());
-        List<Admin> userList=wechatService.findAllAdmin(admin);
-        return userList;
     }
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface AdminMapper {
@@ -22,5 +23,5 @@ public interface AdminMapper {
 
     Admin findAdminByAdmin(@Param("username")String username, @Param("password")String password);
 
-    List<Admin> selectAllAdmin();
+    List<Admin> selectAllAdmin(Map param);
 }

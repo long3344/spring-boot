@@ -3,6 +3,7 @@ package com.wechat.service.wechat;
 import com.wechat.model.Admin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 描述：
@@ -16,5 +17,7 @@ public interface WechatService {
 
     public Admin findAdmin(Admin admin);
 
-    List<Admin> findAllAdmin(Admin admin);
+    List<Admin> findAllAdmin(Map admin);
+
+    int registMember(Map<String, Object> param);
 }

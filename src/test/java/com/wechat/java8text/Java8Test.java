@@ -57,9 +57,8 @@ public class Java8Test {
         aa.add(new Admin(3,"赵六","123456"));
         final Map< Integer ,List< Admin >> map = aa
                 .stream()
-                .collect( Collectors.groupingBy(Admin::getId) );//根据id分组
+                .collect( Collectors.gropuingBy(Admin::getId) );//根据id分组
         System.out.println( map );*/
-
     }
 
 }

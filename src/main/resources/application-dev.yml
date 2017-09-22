@@ -18,12 +18,17 @@ spring:
       #设置自定义的缓存失效时间 example1:72，example2:720，...
       expires: weixinjsapi:7200
       database: 1
-  # Server settings
-  #  项目启动地址：http://localhost:8080/wechat/toLogin
-  server:
-      port:8080
-      address:127.0.0.1
-
+  thymeleaf:
+  # tiles 定义文件所在的位置，多个用逗号隔开如"classpath:/templates/tiles-defs-member.xml,classpath:/templates/tiles-defs-order.xml"
+#      tilesDefLocations: "classpath:/templates/tiles-defs.xml"
+#      excludedViewNames: [member/*,demo/*,merchant/*,jk51b/*,store/*,wechat/*, product/*,login/*,account/*]
+      cache: false
+      cache-period: 0
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      content-type: text/html
+      mode: HTML5
   # DATASOURCE
   jdbc:
       dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
@@ -40,17 +45,29 @@ spring:
       userServerPrepStmts: true
       filters: stat,slf4j,wall
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-  thymeleaf:
-  # tiles 定义文件所在的位置，多个用逗号隔开如"classpath:/templates/tiles-defs-member.xml,classpath:/templates/tiles-defs-order.xml"
-#      tilesDefLocations: "classpath:/templates/tiles-defs.xml"
-#      excludedViewNames: [member/*,demo/*,merchant/*,jk51b/*,store/*,wechat/*, product/*,login/*,account/*]
-      cache: false
-      cache-period: 0
-      prefix: classpath:/templates/
-      suffix: .html
-      encoding: UTF-8
-      content-type: text/html
-      mode: HTML5
+
+  http:
+    encoding:
+      force: true
+    #文件上传,文件最大值设置
+    multipart:
+      maxFileSize: 15Mb       #单个文件最大值
+      maxRequestSize: 150Mb   #单次请求文件总数最大值
+  # Server settings
+  #  项目启动地址：http://localhost:8080/wechat/toLogin
+  server:
+      port: 8080
+      address: 127.0.0.1
+      contextPath: /
+      # Tomcat特性相关
+      tomcat:
+          accessLogEnabled: false
+          protocolHeader: x-forwarded-proto
+          remoteIpHeader: x-forwarded-for
+          connectionTimeout: 180000
+          basedir:
+          # secs
+          backgroundProcessorDelay: 30
   template:
       cache: false
   # SPRING PROFILES
@@ -63,9 +80,9 @@ spring:
 
   # MyBatis
   mybatis:
+      configLocation: classpath:/mybatis-config.xml
       mapperLocations: classpath:mapper/*.xml
       typeAliasesPackage: com.wechat.model
-      configLocation: classpath:/mybatis-config.xml
       configuration:
               callSettersOnNulls: true
               map-underscore-to-camel-case: true
@@ -76,9 +93,10 @@ spring:
   logging:
       config : classpath:logback-boot.xml
       level:
-         root: INFO
-         com.ibatis: DEBUG
+         root: WARN
+         com.ibatis: ERROR
          org.springframework: DEBUG
+         com.wechat.dao: trace
 mq:
   namesrvAddr: 192.168.211.223:9876
   producerGroup: CommonsProducer

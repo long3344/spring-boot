@@ -7,7 +7,7 @@ package com.wechat.model;
  */
 public class Page {
     private  Integer pageNum=1;
-    private  Integer pageSize=15;
+    private  Integer pageSize=1;
     private Integer startRow;
     private boolean count;
 

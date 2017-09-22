@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 描述：
@@ -44,7 +45,12 @@ public class WechatServiceImpl implements WechatService {
     }
 
     @Override
-    public List<Admin> findAllAdmin(Admin admin) {
-        return adminMapper.selectAllAdmin();
+    public List<Admin> findAllAdmin(Map param) {
+        return adminMapper.selectAllAdmin(param);
+    }
+
+    @Override
+    public int registMember(Map<String, Object> param) {
+        return 0;
     }
 }

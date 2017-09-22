@@ -12,13 +12,13 @@
     <span>
     </span>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#regModel"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
         <li><a href="#" data-toggle="modal" data-target="#loginModel"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
         <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModel" data-whatever="@mdo">登录A</button>-->
     </ul>
 </nav>
 <div class="container">
-
+<!--登录弹框-->
     <div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -54,114 +54,62 @@
                             <label class="control-label"></label>
                             <div class="col-md-12 column">
                                 <button type="submit" id="submit" class="btn btn-default btn-primary">登录</button>
-                                <button type="submit" class="btn btn-default btn-primary">注册</button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!--<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-                </div>-->
             </div>
         </div>
     </div>
-
-
-
-
-
-
-    <!--<div class="row clearfix">
-        <div class="col-md-12 column">
-            <form role="form">
-                <input type="hidden" id="userId" th:value="(${admin}!=null)? ${admin.id}: '' "/>
-                <div class="control-group">
-                    <label for="userName" class="control-label">用户名：</label>
-                    <div class="controls">
-                        <input  th:value="(${admin}!=null)? ${admin.username}: '' " type="text" id="userName" placeholder="userName"/>
-
-                    </div>
+    <!--注册弹框-->
+    <div class="modal fade" id="regModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" >注册</h4>
                 </div>
-                <div class="control-group">
-                    <label for="password" class="control-label">密码：</label>
-                    <div class="controls">
-                        <input th:value="(${admin}!=null)? ${admin.password}: '' " type="password" id="password" placeholder="Password"/>
-                    </div>
+                <div class="modal-body">
+                    <form role="form" id="regForm">
+                        <div class="control-group">
+                            <label for="userName" class="control-label">用户名：</label>
+                            <div class="controls">
+                                <input  type="text" id="regName" name="regName" placeholder="userName"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="password" class="control-label">密码：</label>
+                            <div class="controls">
+                                <input  type="password"  value="" id="regPassword" name="regPassword" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="password" class="control-label">确认密码：</label>
+                            <div class="controls">
+                                <input  type="password" value="" id="confirmPassword" name="confirmPassword"  placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="password" class="control-label">验证码</label>
+                            <div class="controls">
+                                <input  type="text" value="" id="vcode" name="vcode"  placeholder="验证码" maxlength="4"/>
+                                <img id="code_img" style="" onclick="this.src='/common/code?t=' + Math.random()" alt="点击刷新" src="/common/code" title="点击刷新"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="col-md-12 column">
+                                <button type="button" onclick="regMember()" class="btn btn-default btn-primary">注册</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="control-group">
-                    <label class="control-label"></label>
-                    <div class="controls">
-                        <label data-toggle="checkbox" class="checkbox-pretty inline">
-                            <input type="checkbox" name="remember-me"/><span>记住我</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label"></label>
-                    <div class="col-md-12 column">
-                        <button type="submit" id="submit" class="btn btn-default btn-primary">登录</button>
-                        <button type="submit" class="btn btn-default btn-primary">注册</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>-->
+    </div>
 </div>
 
 </body>
 </html>
-<script>
-    $(document).ready(function () {
-        var flag =$("#password").val();
-        if(flag==null||flag==''){
-            $("input[name=remember-me]").attr("checked",false);
-        }else{
-            $("input[name=remember-me]").attr("checked",true);
-        }
-
-        $("#submit").on("click",function () {
-            if(_submit()) {
-                window.location.href = "/wechat/index";
-                window.event.returnValue=false;
-            }
-
-        })
-    });
-    function _submit() {
-        var flag =false;
-        datas={};
-        datas.username=$("#userName").val();
-        datas.password=$("#password").val();
-        datas.userId=$("#userId").val();
-        datas.remember=$("input[name=remember-me]:checked").next().text();
-        if(!datas.username) {
-            alert("请输入用户名！");
-            return false;
-        }
-        if(!datas.password){
-            alert("请输入正确的密码！");
-            return false;
-        }
-        if(!datas.userId){
-        }
-        $.ajax({
-            type: 'post',
-            url: "/wechat/login",
-            async: false,
-            data: datas,
-            success: function (data) {
-                console.log(data);
-                if(data.status=="ok"){
-                    flag=true;
-                    window.location.href = "/wechat/index";
-                }else {
-                    alert("没有该用户！")
-                    flag=false;
-                }
-            }
-        });
-        return flag;
-    }
-
-</script>
+<script src="../../statics/wechat/member/loginRegist.js"></script>
