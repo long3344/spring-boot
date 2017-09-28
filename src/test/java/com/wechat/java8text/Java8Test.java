@@ -10,6 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,9 +28,12 @@ import java.util.stream.Collectors;
 @ActiveProfiles("dev")
 public class Java8Test {
 
+    public Java8Test() {
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(StringRedisTemplateTest.class);
 
-    public static  void main(String[] arge0 ){
+    public static  void main(String[] arges ) throws Exception {
 
         /*Arrays.asList( "a", "b", "d" ).forEach(e -> System.out.println("java8循环："+ e ) );
 
@@ -59,6 +67,19 @@ public class Java8Test {
                 .stream()
                 .collect( Collectors.gropuingBy(Admin::getId) );//根据id分组
         System.out.println( map );*/
+
+        File file=new File("D:\\textFile\\a.txt");
+        FileOutputStream fos=new FileOutputStream(file);
+        FileChannel channel=fos.getChannel();
+        ByteBuffer buffer=ByteBuffer.allocate(1024);
+        String str="abcd 测试一下";
+        buffer.put(str.getBytes());
+        buffer.flip();//此处必须要调用buffer的flip方法
+        channel.write(buffer);
+        channel.close();
+        fos.close();
+
+
     }
 
 }

@@ -44,13 +44,13 @@ public class WechatServiceImpl implements WechatService {
         return adminMapper.selectByPrimaryKey(admin.getId());
     }
 
-    @Override
-    public List<Admin> findAllAdmin(Map param) {
+
+    public List<Map<String,Object>> findAllAdmin(Map param) {
         return adminMapper.selectAllAdmin(param);
     }
 
     @Override
     public int registMember(Map<String, Object> param) {
-        return 0;
+        return adminMapper.insertAdmin(param);
     }
 }

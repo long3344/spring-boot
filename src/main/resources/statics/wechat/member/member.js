@@ -2,30 +2,98 @@
  * Created by Administrator on 2017/9/12.
  */
 
-//查询会员信息
-function findMemberList() {
-    
-    var param = {
+var ACCOUNT = {};
+
+var page_total = 0;
+var pagesize = 0;
+var total = 0;
+
+// //查询会员信息
+// function findMemberList(pageno) {
+//     pageno = pageno || 1;
+//     var pageSize = 15;
+//
+//     var param = {
+//             "name":$("#name").val(),
+//             "phone":$("#password").val(),
+//             "pageNum":pageno,
+//             "pageSize":pageSize
+//         };
+//     console.log("查询参数",param);
+//     $.ajax({
+//         type: 'post',
+//         url: '/member/getMemberList',
+//         data: param,
+//         dataType: 'json',
+//         success: function (data) {
+//             console.log(data);
+//
+//             $("#memberList").empty();
+//             page_total = data.pages;
+//             pagesize = data.pageSize;
+//             total = data.total;
+//             console.log(data);
+//             ACCOUNT.total=document.total;
+//
+//             var tmpl = document.getElementById('memberTemplate').innerHTML;
+//             var doTtmpl = doT.template(tmpl);
+//             $("#memberList").html(doTtmpl(data));
+//             addpage(ACCOUNT.GetNum.ajaxGetList)
+//         },
+//         error: function () {
+//             console.log("error ....");
+//         }
+//     });
+// }
+
+
+
+ACCOUNT.GetNum = {
+
+    settings: {
+        //modalID: '#modal-slider',
+    },
+    init: function () {
+        this.ajaxGetList(1);
+        this.even();
+    },
+    ajaxGetList: function (pageno) {
+        pageno = pageno || 1;
+        var pageSize = 15;
+        var param = {
             "name":$("#name").val(),
             "phone":$("#password").val(),
-            "pageNum":1,
-            "pageSize":1
+            "pageNum":pageno,
+            "pageSize":pageSize
         };
-    console.log("查询参数",param);
-    $.ajax({
-        type: 'post',
-        url: '/member/getMemberList',
-        data: param,
-        dataType: 'json',
-        success: function (data) {
-            console.log(data);
+        console.log(param);
+        $.ajax({
+            type: 'post',
+            url: '/member/getMemberList',
+            data: param,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
 
-            var tmpl = document.getElementById('memberTemplate').innerHTML;
-            var doTtmpl = doT.template(tmpl);
-            $("#memberList").html(doTtmpl(data.list));
-        },
-        error: function () {
-            console.log("error ....");
-        }
-    });
-}
+                $("#memberList").empty();
+                page_total = data.pages;
+                pagesize = data.pageSize;
+                total = data.total;
+                ACCOUNT.total=document.total;
+
+                var tmpl = document.getElementById('memberTemplate').innerHTML;
+                var doTtmpl = doT.template(tmpl);
+                $("#memberList").html(doTtmpl(data));
+                pageInfo($('.pageinfo'), pageno, page_total, pagesize, total, ACCOUNT.GetNum.ajaxGetList);
+            }
+        });
+    }
+};
+
+
+ACCOUNT.init = function () {
+    ACCOUNT.GetNum.init();
+};
+$(function () {
+    ACCOUNT.init();
+});

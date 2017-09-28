@@ -17,7 +17,7 @@ public interface WechatService {
 
     public Admin findAdmin(Admin admin);
 
-    List<Admin> findAllAdmin(Map admin);
+    List<Map<String,Object>> findAllAdmin(Map admin);
 
     int registMember(Map<String, Object> param);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,8 +44,8 @@ public class MemberController {
     public PageInfo<?> findMemberList(HttpServletRequest request){
         Map<String,Object> param= ParameterUtil.getParameterMap(request);
         logger.info("查询会员信息，参数===>{}",param);
-        PageHelper.startPage(Integer.parseInt(param.get("pageSize")+""),Integer.parseInt(param.get("pageNum")+""));
-        List<Admin> userList=wechatService.findAllAdmin(param);
+        PageHelper.startPage(Integer.parseInt(param.get("pageNum")+""),Integer.parseInt(param.get("pageSize")+""));
+        List<Map<String,Object>> userList=wechatService.findAllAdmin(param);
         return new PageInfo<>(userList);
     }
 }

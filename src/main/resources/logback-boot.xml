@@ -20,7 +20,7 @@
         <logger name="com.wechat" level="trace"/>
         <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>debug</level>
+                <level>erro</level>
             </filter>
             <encoder>
                 <pattern>${PATTERN}</pattern>
@@ -71,9 +71,6 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
-        <!--<logger name="com.jk51.persistence" level="debug"/>-->
-        <!--<logger name="com.jk51.persistence" level="debug"/>-->
-        <!--<logger name="org.thymeleaf" level="warn"/>-->
         <root level="INFO">
             <appender-ref ref="stdout"/>
             <appender-ref ref="r-debug"/>
@@ -162,10 +159,6 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
-
-        <!--<logger name="com.jk51.persistence" level="debug"/>-->
-        <!--<logger name="org.thymeleaf" level="warn"/>-->
-        <!--<logger name="com.jk51.persistence" level="debug"/>-->
         <root level="info">
             <appender-ref ref="r-debug"/>
             <appender-ref ref="r-info"/>

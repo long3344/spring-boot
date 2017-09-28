@@ -130,8 +130,9 @@
       FROM admin
     WHERE username=#{username,jdbcType=VARCHAR} AND password=#{password,jdbcType=VARCHAR}
   </select>
-  <select id="selectAllAdmin" resultMap="BaseResultMap">
-    SELECT *FROM admin WHERE 1=1
+  <select id="selectAllAdmin" resultType="map">
+    SELECT username,phone,qq,wechat,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%S') createTime,DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%S') updateTime
+    FROM admin WHERE 1=1
     <if test="name!=null and name!='' ">
       AND username=#{name}
     </if>
@@ -139,5 +140,60 @@
       AND phone=#{phone}
     </if>
   </select>
+  <insert id="insertAdmin" parameterType="map">
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
   <cache />
 </mapper>

@@ -85,11 +85,12 @@ function regMember(){
         data: datas,
         success: function (data) {
             console.log(data);
-            if(data.status=="ok"){
-                alert("恭喜，注册成功！")
+            if(data.code==000){
+                alert("恭喜，注册成功！");
                 window.location.href = "/wechat/index";
             }else {
-                alert("注册失败！")
+                alert(data.message);
+                $("#code_img").click();
             }
         }
     });

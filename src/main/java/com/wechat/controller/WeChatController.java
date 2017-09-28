@@ -2,6 +2,7 @@ package com.wechat.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wechat.dto.ReturnDto;
 import com.wechat.model.Admin;
 import com.wechat.service.wechat.WechatService;
 import com.wechat.util.ParameterUtil;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,10 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -129,12 +128,43 @@ public class WeChatController {
         return null;
     }
 
+    /**
+     * 注册登录
+     * @param request
+     * @return
+     */
     @RequestMapping("/regist")
-    public String regist(HttpServletRequest request,Map<String,Object> param){
-        Map<String,Object> aaa= ParameterUtil.getParameterMap(request);
-        logger.info("开始注册,注册信息===>{}",aaa);
-         int result =wechatService.registMember(aaa);
-        return "";
+    @ResponseBody
+    public ReturnDto regist(HttpServletRequest request){
+        Map<String,Object> param= ParameterUtil.getParameterMap(request);
+        logger.info("开始注册,注册信息===>{}",param);
+        String code = (String) request.getSession().getAttribute("code");
+        if (StringUtils.isEmpty(param.get("username"))){
+            return ReturnDto.buildFailedReturnDto("用户名不能为空！");
+        }
+        if (StringUtils.isEmpty(param.get("password"))){
+            return ReturnDto.buildFailedReturnDto("密码不能为空！");
+        }
+        if (code==null){
+            return ReturnDto.buildFailedReturnDto("验证码超时！");
+        }
+        if (!code.equalsIgnoreCase(param.get("vcode")+"")){
+            return ReturnDto.buildFailedReturnDto("验证码输入有误！");
+        }
+
+        param.put("createTime",new Date());
+        param.put("updateTime",new Date());
+        try {
+            int result =wechatService.registMember(param);
+            if (result==1){
+                request.getSession().setAttribute("username",param.get("username"));
+                request.getSession().setAttribute("password",param.get("password"));
+            }
+            return ReturnDto.buildSuccessReturnDto(result);
+        }catch (Exception e){
+            logger.error("注册失败，错误信息===>",e);
+            return ReturnDto.buildFailedReturnDto("注册失败！");
+        }
     }
 
     //登录成功跳转页面（服务内部调用）

@@ -23,5 +23,7 @@ public interface AdminMapper {
 
     Admin findAdminByAdmin(@Param("username")String username, @Param("password")String password);
 
-    List<Admin> selectAllAdmin(Map param);
+    List<Map<String,Object>> selectAllAdmin(Map param);
+
+    int insertAdmin(Map<String, Object> param);
 }

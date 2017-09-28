@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
 #redis服务器相关配置
   redis:
       sentinel:
@@ -39,7 +41,7 @@ spring:
       password: 'root'
       driverClassName: 'com.mysql.jdbc.Driver'
       type: com.alibaba.druid.pool.DruidDataSource
-      cachePrepStmts: true
+#      cachePrepStmts: false
       prepStmtsSize: 250
       prepStmtsCacheSqlLimit: 2048
       userServerPrepStmts: true
@@ -55,48 +57,35 @@ spring:
       maxRequestSize: 150Mb   #单次请求文件总数最大值
   # Server settings
   #  项目启动地址：http://localhost:8080/wechat/toLogin
-  server:
-      port: 8080
-      address: 127.0.0.1
-      contextPath: /
+server:
+  port: 8080
+  address: 127.0.0.1
+  contextPath: /
       # Tomcat特性相关
-      tomcat:
-          accessLogEnabled: false
-          protocolHeader: x-forwarded-proto
-          remoteIpHeader: x-forwarded-for
-          connectionTimeout: 180000
-          basedir:
-          # secs
-          backgroundProcessorDelay: 30
+  tomcat:
+    accessLogEnabled: false
+    protocolHeader: x-forwarded-proto
+    remoteIpHeader: x-forwarded-for
+    connectionTimeout: 180000
+    basedir:
+    # secs
+    backgroundProcessorDelay: 30
   template:
       cache: false
-  # SPRING PROFILES
-  spring:
-      # HTTP ENCODING
-      http:
-          encoding.charset: UTF-8
-          encoding.enable: true
-          encoding.force: true
-
-  # MyBatis
-  mybatis:
-      configLocation: classpath:/mybatis-config.xml
-      mapperLocations: classpath:mapper/*.xml
-      typeAliasesPackage: com.wechat.model
-      configuration:
-              callSettersOnNulls: true
-              map-underscore-to-camel-case: true
-              default-fetch-size: 100
-              default-statement-timeout: 30
+# MyBatis
+mybatis:
+  configLocation: classpath:/mybatis-config.xml
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.wechat.model
+  configuration:
+      callSettersOnNulls: true
+      map-underscore-to-camel-case: true
+      default-fetch-size: 100
+      default-statement-timeout: 30
 
 #配置日志
-  logging:
+logging:
       config : classpath:logback-boot.xml
-      level:
-         root: WARN
-         com.ibatis: ERROR
-         org.springframework: DEBUG
-         com.wechat.dao: trace
 mq:
   namesrvAddr: 192.168.211.223:9876
   producerGroup: CommonsProducer
@@ -104,8 +93,8 @@ mq:
   retryTimes: 5
 
 #分页配置
-  pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: false
-    params: count=countSql;pageNum=pagenum;pageSize=pagesize
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: false
+  params: count=countSql;pageNum=pagenum;pageSize=pagesize
