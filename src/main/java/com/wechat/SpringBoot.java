@@ -16,11 +16,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * 作者: TWL
  * 创建日期: 2017/5/10
  */
+//@EnableConfigurationProperties(StorageProperties.class)
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages="com.wechat")
 @EnableAsync
-//@EnableConfigurationProperties(StorageProperties.class)
 public class SpringBoot {
 
     public static final Logger logger = LoggerFactory.getLogger(SpringBoot.class);

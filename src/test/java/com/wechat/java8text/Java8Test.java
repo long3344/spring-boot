@@ -3,6 +3,7 @@ package com.wechat.java8text;
 import com.wechat.SpringBoot;
 import com.wechat.StringRedisTemplateTest;
 import com.wechat.model.Admin;
+import com.wechat.util.file.FileUtil;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -68,7 +70,7 @@ public class Java8Test {
                 .collect( Collectors.gropuingBy(Admin::getId) );//根据id分组
         System.out.println( map );*/
 
-        File file=new File("D:\\textFile\\a.txt");
+        /*File file=new File("D:\\textFile\\a.txt");
         FileOutputStream fos=new FileOutputStream(file);
         FileChannel channel=fos.getChannel();
         ByteBuffer buffer=ByteBuffer.allocate(1024);
@@ -77,8 +79,13 @@ public class Java8Test {
         buffer.flip();//此处必须要调用buffer的flip方法
         channel.write(buffer);
         channel.close();
-        fos.close();
+        fos.close();*/
 
+       //文件copy
+
+        File inFile=new File("D:\\textFile\\a.txt");
+        File outFile=new File("D:\\textFile\\b.txt");
+        FileUtil.fileCopy(inFile,outFile);
 
     }
 

@@ -57,6 +57,16 @@ ACCOUNT.GetNum = {
         this.ajaxGetList(1);
         this.even();
     },
+    even: function () {
+        $(document).keyup(function(event){
+            if(event.keyCode ==13){
+                ACCOUNT.GetNum.ajaxGetList();
+            }
+        });
+        $("#search").on('click', function () {
+            ACCOUNT.GetNum.ajaxGetList(1);
+        });
+    },
     ajaxGetList: function (pageno) {
         pageno = pageno || 1;
         var pageSize = 15;
@@ -72,8 +82,9 @@ ACCOUNT.GetNum = {
             url: '/member/getMemberList',
             data: param,
             dataType: 'json',
+            async:false,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
 
                 $("#memberList").empty();
                 page_total = data.pages;
@@ -81,6 +92,7 @@ ACCOUNT.GetNum = {
                 total = data.total;
                 ACCOUNT.total=document.total;
 
+                // addpage(ACCOUNT.GetNum.ajaxGetList)
                 var tmpl = document.getElementById('memberTemplate').innerHTML;
                 var doTtmpl = doT.template(tmpl);
                 $("#memberList").html(doTtmpl(data));

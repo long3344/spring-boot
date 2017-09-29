@@ -3,59 +3,67 @@
 <head>
     <meta charset="UTF-8"/>
     <title>会员列表</title>
-    <script src="/statics/bootstrap/js/jquery-1.10.2.min.js"></script>
-    <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/statics/sui/css/sui-append.min.css"/>
+    <link rel="stylesheet" href="/statics/sui/css/select2.min.css"/>
+    <link rel="stylesheet" href="/statics/sui/css/sui.min.css"/>
+
     <link rel="stylesheet" href="/statics/bootstrap/css/bootstrap.min.css"/>
-    <script src="/statics/js/swiper/swiper-3.4.2.jquery.min.js"></script>
-    <script src="/statics/js/swiper/swiper.animate1.0.2.min.js"></script>
     <link rel="stylesheet" href="/statics/css/swiper/swiper-3.4.2.min.css"/>
     <link rel="stylesheet" href="/statics/css/swiper/animate.min.css"/>
+
+    <script src="/statics/sui/js/jquery-1.8.3.min.js"></script>
+    <script src="/statics/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/statics/common/sui.min.js"></script>
+    <script src="/statics/sui/js/select2.full.min.js"></script>
+    <script src="/statics/js/swiper/swiper-3.4.2.jquery.min.js"></script>
+    <script src="/statics/js/swiper/swiper.animate1.0.2.min.js"></script>
+    <link rel="stylesheet" href="/statics/main.css"/>
     <script src="/statics/common/doT.js"></script>
+    <script src="/statics/pagination.js"></script>
+
 </head>
-<body>
-<div>
-<form class="form-inline">
-    <div class="form-group">
-        <label for="name">姓名：</label>
-        <input type="text" class="form-control" id="name" />
-    </div>
-    <div class="form-group">
-        <label for="phone">手机号：</label>
-        <input type="text" class="form-control" id="phone"/>
-    </div>
-    <button type="submit" class="btn btn-default" id="search">查询</button>
-</form>
-</div>
-<table class="table">
-    <thead>
-        <th>姓名</th>
-        <th>手机号</th>
-        <th>QQ号</th>
-        <th>微信</th>
-        <th>创建时间</th>
-    </thead>
-    <tbody id="memberList">
-
-    </tbody>
-    <div class="pageinfo" id="pageinfo" >
-
-    </div >
-</table>
-</body>
-</html>
-<script charset="utf-8" src="../../statics/wechat/member/member.js"></script>
-<script id="memberTemplate" type="text/template">
-    {{ if(it.list.length > 0){ }}
-        {{ for( i in it.list){ }}
-            <tr>
-                <td>{{=it.list[i].username|| '---'}}</td>
-                <td>{{=it.list[i].phone ||'---'}}</td>
-                <td>{{=it.list[i].qq ||'---'}}</td>
-                <td>{{=it.list[i].wechat ||'---'}}</td>
-                <td>{{=it.list[i].createTime ||'---'}}</td>
-            </tr>
-        {{ }}}
-    {{ } else{ }}
-        暂无数据！
-    {{ }}}
-</script>
+  <body>
+  <div>
+  <form class="form-inline">
+      <div class="form-group">
+          <label for="name">姓名：</label>
+          <input type="text" class="form-control" id="name" />
+      </div>
+      <div class="form-group">
+          <label for="phone">手机号：</label>
+          <input type="text" class="form-control" id="phone"/>
+      </div>
+      <button type="submit" class="btn btn-default" id="search">查询</button>
+  </form>
+  </div>
+  <table class="table">
+          <thead>
+              <th>姓名</th>
+              <th>手机号</th>
+              <th>QQ号</th>
+              <th>微信</th>
+              <th>创建时间</th>
+          </thead>
+          <tbody id="memberList">
+          </tbody>
+  </table>
+  <span class="pageinfo" id="pageinfo" ></span >
+  </body>
+  </html>
+  <script charset="utf-8" src="../../statics/wechat/member/member.js"></script>
+  <script id="memberTemplate" type="text/template">
+      {{ if(it.list.length > 0){ }}
+          {{ for( i in it.list){ }}
+              <tr>
+                  <td>{{=it.list[i].username|| '---'}}</td>
+                  <td>{{=it.list[i].phone ||'---'}}</td>
+                  <td>{{=it.list[i].qq ||'---'}}</td>
+                  <td>{{=it.list[i].wechat ||'---'}}</td>
+                  <td>{{=it.list[i].createTime ||'---'}}</td>
+              </tr>
+          {{ }}}
+      {{ } else{ }}
+          暂无数据！
+      {{ }}}
+  </script>
