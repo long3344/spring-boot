@@ -47,7 +47,6 @@ import java.util.Map;
 /**
  * 版权所有(C) 2017 上海银路投资管理有限公司
  * 描述:
- * 作者: liufurong
  * 创建日期: 2017-02-24
  * 修改记录:
  */
@@ -565,6 +564,7 @@ public class HttpClient {
         try {
             responseOS = response.getOutputStream();
             response.addHeader("Content-Length", "" + file.length());
+            response.setContentType("application/msexcel");
             response.setHeader("content-disposition",
                     "attachment;filename=" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
             raf = new RandomAccessFile(file, "rw");
