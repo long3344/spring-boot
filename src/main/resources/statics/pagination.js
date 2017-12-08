@@ -1,12 +1,6 @@
 /**
  * Created by Administrator on 2017/9/28.
  */
-/**
- * Created by admin on 2017/4/20.
- */
-/**
- * Created by qingshan on 2017/3/29.
- */
 var pagination_page_no = 1; //页码
 var pagination_pages = 1; //总页数
 var pagination_totals = 0; //总条数

@@ -98,3 +98,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: false
   params: count=countSql;pageNum=pagenum;pageSize=pagesize
+
+#下载的临时文件夹
+report:
+  temp_dir: D:/reports

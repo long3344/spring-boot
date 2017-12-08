@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://java.sun.com/jsf/facelets">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录成功</title>
+    <script src="/statics/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="/statics/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/statics/bootstrap/css/bootstrap.min.css"/>
+    <script src="../../statics/echarts/echarts.js"></script>
+    <script src="../../statics/wechat/echarts/echartsPage.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse" style="background-color: #0F2232;" role="navigation">
+    <span>
+        <h3 id="admin" style="color: #349E49;margin-left: 5%;">欢迎!<span th:text="(${session.admin}!=null)? ${session.admin.username}: '' "></span></h3>
+    </span>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 2%;">
+        <li><a href="/wechat/toRegister"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+        <li><a href="/wechat/toLogin"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+    </ul>
+</nav>
+<!--<iframe name="toppage" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="no" border="0"  src="../../templates/header.html" ></iframe>-->
+<div class="container-fluid" style="margin-top:3%;">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM 柱状图-->
+            <div id="main" style="width: 1200px;height:400px;"></div>
+<!--饼图-->
+            <div id="pie" style="width: 600px;height:400px;"></div>
+<!--折线图-->
+            <div id="line" style="width: 600px;height:400px;"></div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+
+</html>
+
+

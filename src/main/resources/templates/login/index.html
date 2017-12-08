@@ -36,6 +36,13 @@
                 <li>
                     <a href="/member/memberList">查看会员</a>
                 </li>
+                <li>
+                    <a href="/echarts/echartsPage">echart实例</a>
+                </li>
+                <li>
+                    <input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" />
+                </li>
+
                 <li class="dropdown pull-right">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
                     <ul class="dropdown-menu">
@@ -179,5 +186,26 @@
         ee+=text;
         $("#admin").text(ee);
     })*/
+
+    /**
+     * 免费获取短信验证码倒计时
+     */
+    var countdown=60;
+    function settime(obj) {
+        if (countdown == 0) {
+            obj.removeAttribute("disabled");
+            obj.value="免费获取验证码";
+            countdown = 60;
+            return;
+        } else {
+            obj.setAttribute("disabled", true);
+            obj.value="重新发送(" + countdown + ")";
+            countdown--;
+        }
+        setTimeout(function() {
+                settime(obj) }
+            ,1000)
+    }
+
 </script>
 

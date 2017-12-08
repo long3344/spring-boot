@@ -82,7 +82,7 @@ ACCOUNT.GetNum = {
             url: '/member/getMemberList',
             data: param,
             dataType: 'json',
-            async:false,
+            async:true,
             success: function (data) {
                 // console.log(data);
 
@@ -102,6 +102,29 @@ ACCOUNT.GetNum = {
     }
 };
 
+function exportMember() {
+    var param={pageSize:15,pageno:1};
+    $.ajax({
+        type: 'post',
+        url: '/export/exportMember',
+        data: param,
+        dataType: 'form',
+        async:false
+    });
+
+   /* var form = $("<form>");//定义一个form表单
+    form.attr("style", "display:none");
+    // form.attr("target", "");
+    form.attr("method", "post");
+    for (var i in param) {
+        form.append('<input type="hidden" name="' + i + '" value="' + param[i] + '" >');
+    }
+    console.log(form);
+    form.attr("action", "/export/exportMember");
+    $("body").append(form);//将表单放置在web中
+    form.submit();//表单提交*/
+
+}
 
 ACCOUNT.init = function () {
     ACCOUNT.GetNum.init();
