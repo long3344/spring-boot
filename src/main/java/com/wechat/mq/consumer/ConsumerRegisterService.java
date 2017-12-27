@@ -88,6 +88,7 @@ public class ConsumerRegisterService {
         consumer.setMaxReconsumeTimes(retryTimes);
         consumer.setNamesrvAddr(StringUtils.isEmpty(namesrvAddr) ? config.getNamesrvAddr() : namesrvAddr);
         consumer.subscribe(topicName, tagName);
+        consumer.setVipChannelEnabled(false);//必须设为false否则连接broker10909端口
         if (consumeType == MsgConsumer.ConsumeType.Orderly) {
             consumer.registerMessageListener((List<MessageExt> messages, ConsumeOrderlyContext context) -> {
                 try {

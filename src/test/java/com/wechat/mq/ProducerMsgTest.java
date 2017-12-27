@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
@@ -32,6 +33,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringBoot.class)
+@ActiveProfiles("dev")
 public class ProducerMsgTest {
 
     private static Logger logger = LoggerFactory.getLogger(ProducerMsgTest.class);
@@ -54,7 +56,7 @@ public class ProducerMsgTest {
     @Test
     public void getMsg(){
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("PushConsumer");
-        consumer.setNamesrvAddr("192.168.211.223:9876");
+        consumer.setNamesrvAddr("127.0.0.1:9876");
         try{
             consumer.subscribe("OrderTopic","AAA");
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
@@ -63,7 +65,7 @@ public class ProducerMsgTest {
                         @Override
                         public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
                            Message msg = msgs.get(0);
-                           logger.info(msg.toString());
+                           logger.info("消息消费结果：{}",msg.toString());
                            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
                         }
                     }

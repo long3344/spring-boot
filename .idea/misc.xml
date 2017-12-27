@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="D:/rocketMQ/RocketMQ-3.5.8/pom.xml" />
         <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-broker/pom.xml" />
         <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-client/pom.xml" />
         <option value="D:/rocketMQ/RocketMQ-3.5.8/rocketmq-common/pom.xml" />

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * 文件名:com.jk51.mq.DemoConsumer
  * 描述:
- * 作者: wangzhengfei
+ * 作者: 田文龙
  * 创建日期: 2017-02-10
  * 修改记录:
  */

@@ -44,6 +44,7 @@ public class DefaultProducer implements MQProducer {
         producer.setClientIP(config.getClientIP());
         producer.setSendMsgTimeout(config.getTimeout());
         producer.setRetryTimesWhenSendFailed(config.getRetryTimes());
+        producer.setVipChannelEnabled(false);//必须设为false否则连接broker10909端口
         producer.start();
         return producer;
     }

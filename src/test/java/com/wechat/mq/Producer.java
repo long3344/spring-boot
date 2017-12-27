@@ -12,14 +12,15 @@ import com.alibaba.rocketmq.common.message.Message;
 public class Producer {
     public static void main(String[] args){
         DefaultMQProducer producer = new DefaultMQProducer("Producer");
-        producer.setNamesrvAddr("192.168.211.223:9876");
+        producer.setNamesrvAddr("127.0.0.1:9876");
+        producer.setVipChannelEnabled(false);
         try {
             producer.start();
 
             Message msg = new Message("PushTopic",
                     "push",
                     "1",
-                    "Just for test.".getBytes());
+                    "测试数据A".getBytes());
 
             SendResult result = producer.send(msg);
             System.out.println("id:" + result.getMsgId() +
@@ -28,16 +29,19 @@ public class Producer {
             msg = new Message("PushTopic",
                     "push",
                     "2",
-                    "Just for test.".getBytes());
+                    "测试数据B".getBytes());
 
             result = producer.send(msg);
             System.out.println("id:" + result.getMsgId() +
                     " result:" + result.getSendStatus());
 
-            msg = new Message("PullTopic",
-                    "pull",
+            msg = new Message(
+                    //"PullTopic",
+                    "PushTopic",
+//                    "pull",//测试数据
+                    "push",
                     "1",
-                    "Just for test.".getBytes());
+                    "测试数据C".getBytes());
 
             result = producer.send(msg);
             System.out.println("id:" + result.getMsgId() +
