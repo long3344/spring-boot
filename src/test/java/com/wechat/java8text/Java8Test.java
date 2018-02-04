@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
  * 作者: TWL
  * 创建日期: 2017/9/1
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringBoot.class)
-@ActiveProfiles("dev")
+@ActiveProfiles("dev")*/
 public class Java8Test {
 
     public Java8Test() {
@@ -83,10 +83,19 @@ public class Java8Test {
 
        //文件copy
 
-        File inFile=new File("D:\\textFile\\a.txt");
+        /*File inFile=new File("D:\\textFile\\a.txt");
         File outFile=new File("D:\\textFile\\b.txt");
-        FileUtil.fileCopy(inFile,outFile);
+        FileUtil.fileCopy(inFile,outFile);*/
 
+        /*String foo="abcdef";
+        foo.substring(3);
+        foo.concat("xyz");*/
+
+        System.out.println(TestEnum.AA.getKey());
+        System.out.println(TestEnum.AA.getValue());
+        System.out.println(TestEnum.AA.getDesc());
     }
+
+
 
 }

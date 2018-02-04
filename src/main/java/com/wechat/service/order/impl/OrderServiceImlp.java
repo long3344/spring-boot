@@ -37,7 +37,7 @@ public class OrderServiceImlp implements OrderService{
     private WebpageMapper webpageMapper;
 
     /**
-     * 创建订单
+     * 创建订单添加消息队列
      * @param order
      * @return
      */
@@ -61,13 +61,13 @@ public class OrderServiceImlp implements OrderService{
                 SendResult result=defaultProducer.send(message);
 
                 if (result.getSendStatus() == SendStatus.SEND_OK) {
-                    logger.info("订单成功加入队列 brokerName:{} topic:{} queueId:{} offset:{}",
+                    logger.info("订单成功加入队列 brokerName====>{} topic====>{} queueId====>{} offset====>{}",
                             result.getMessageQueue().getBrokerName(),
                             result.getMessageQueue().getTopic(),
                             result.getMessageQueue().getQueueId(),
                             result.getQueueOffset()
                     );
-//                    return ReturnDto.buildSuccessReturnDto("创建订单成功！");
+                    return ReturnDto.buildSuccessReturnDto("创建订单成功！");
                 }
             } catch (Exception e) {
                 logger.error("添加消息队列出现异常，异常信息：{}",e);

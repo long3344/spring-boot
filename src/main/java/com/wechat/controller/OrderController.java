@@ -23,6 +23,10 @@ public class OrderController {
     @Autowired
     private OrderServiceImlp orderService;
 
+    /**
+     * rocketMQ测试
+     * @return
+     */
     @RequestMapping("/createOrder")
     @ResponseBody
     public ReturnDto createOrder(){
