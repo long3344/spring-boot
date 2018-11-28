@@ -92,13 +92,14 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     private long maxWaitMillis;
 
     /**
-     * redis密码
+     * redis主机ip
+     *
      */
     @Value("${spring.redis.host}")
     private String host;
 
     /**
-     * redis密码
+     * redis端口
      */
     @Value("${spring.redis.port}")
     private int port;
