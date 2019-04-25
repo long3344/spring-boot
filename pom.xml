@@ -6,7 +6,7 @@
 
     <groupId>spring_boot</groupId>
     <artifactId>spring_boot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.release.version}</version>
     <packaging>war</packaging>
 
 
@@ -36,7 +36,25 @@
         <mysql-connector-java.version>5.1.34</mysql-connector-java.version>
         <!-- mybatis pagehelper -->
         <pagehelper.version>4.1.1</pagehelper.version>
+
+        <project.release.version>1.0-SNAPSHOT</project.release.version>
     </properties>
+
+    <!--定义snapshots库和releases库的nexus地址-->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>
+                http://47.98.101.128:8081/nexus/content/repositories/releases/
+            </url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>
+                http://47.98.101.128:8081/nexus/content/repositories/snapshots/
+            </url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
