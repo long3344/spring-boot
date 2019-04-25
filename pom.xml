@@ -7,6 +7,7 @@
     <groupId>spring_boot</groupId>
     <artifactId>spring_boot</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
 
     <parent>
@@ -295,7 +296,12 @@
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>3.16</version>
         </dependency>
-
+        <!--打war包发布需要-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>

@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -21,7 +22,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAutoConfiguration
 @ComponentScan(basePackages="com.wechat")
 @EnableAsync
-public class SpringBoot {
+public class SpringBoot extends SpringBootServletInitializer {
 
     public static final Logger logger = LoggerFactory.getLogger(SpringBoot.class);
 
