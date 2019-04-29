@@ -6,7 +6,7 @@
     <property name="project_name" value="spring-boot"></property>
 
     <!--文件存放目录-->
-    <property name="log_root" value="/var/log/java/"></property>
+    <property name="log_root" value="/var/log/java"></property>
     <property name="dev_log_path" value="${log_root}/${project_name}/"/>
     <property name="test_log_path" value="${log_root}/${project_name}/"/>
     <property name="prd_log_path" value="${log_root}/${project_name}/"/>
