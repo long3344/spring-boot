@@ -63,6 +63,7 @@
             </layout>
         </appender>
         <appender name="r-error" class="ch.qos.logback.core.FileAppender">
+            <prudent>true</prudent>
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>ERROR</level>
             </filter>
