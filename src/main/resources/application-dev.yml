@@ -58,7 +58,7 @@ spring:
   # Server settings
   #  项目启动地址：http://localhost:8080/wechat/toLogin
 server:
-  port: 8080
+  port: 8081
   address: 47.98.101.128
   contextPath: /
       # Tomcat特性相关
