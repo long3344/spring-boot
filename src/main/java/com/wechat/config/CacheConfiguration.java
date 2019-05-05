@@ -52,8 +52,8 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * redis sentinel master 名称，通常配置在sentinel.conf中
      */
-    @Value("${spring.redis.sentinel.master}")
-    private String master;
+    //@Value("${spring.redis.sentinel.master}")
+    private String master="mymaster";
 
     /**
      * sentinel节点，逗号分隔，格式如：172.20.10.192:26379,172.20.10.193:26379
