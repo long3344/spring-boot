@@ -52,12 +52,12 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * redis sentinel master 名称，通常配置在sentinel.conf中
      */
-    private String master="mymaster";
+    private String master;
 
     /**
      * sentinel节点，逗号分隔，格式如：172.20.10.192:26379,172.20.10.193:26379
      */
-    private String nodes="";
+    private String nodes;
 
     /**
      * 连接超时时间，单位：毫秒
