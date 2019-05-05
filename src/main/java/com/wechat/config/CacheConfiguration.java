@@ -52,58 +52,58 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * redis sentinel master 名称，通常配置在sentinel.conf中
      */
-    private String master;
+    private String master="mymaster";
 
     /**
      * sentinel节点，逗号分隔，格式如：172.20.10.192:26379,172.20.10.193:26379
      */
-    private String nodes;
+    private String nodes="";
 
     /**
      * 连接超时时间，单位：毫秒
      */
-    private int timeout;
+    private int timeout=1000;
 
     /**
      * 最小空闲连接数
      */
-    private int minIdle;
+    private int minIdle=20;
 
     /**
      * 最大空闲连接数
      */
-    private int maxIdle;
+    private int maxIdle=20;
 
     /**
      * 最大激活连接数
      */
-    private int maxActive;
+    private int maxActive=100;
 
     /**
      * 最大等待毫秒数
      */
-    private long maxWaitMillis;
+    private long maxWaitMillis=-1;
 
     /**
      * redis主机ip
      *
      */
-    private String host;
+    private String host="47.98.101.128";
 
     /**
      * redis端口
      */
-    private int port;
+    private int port=6379;
 
     /**
      * redis密码
      */
-    private String password;
+    private String password="";
 
     /**
      * 通过@Cacheable代理的缓存默认失效时间(单位：秒)
      */
-    private int cacheableDefaultExpSec;
+    private int cacheableDefaultExpSec=120;
     /**
      * 设置过期时间
      */
@@ -292,6 +292,7 @@ public class CacheConfiguration extends CachingConfigurerSupport {
         return topinContainer;
     }*/
     
+    /*
      @Value("${spring.redis.sentinel.master}")
     public void setMaster(String master) {
         this.master = master;
@@ -337,4 +338,5 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     public void setCacheableDefaultExpSec(int cacheableDefaultExpSec) {
         this.cacheableDefaultExpSec = cacheableDefaultExpSec;
     }
+    */
 }
