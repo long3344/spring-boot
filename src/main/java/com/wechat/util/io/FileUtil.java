@@ -2,9 +2,8 @@ package com.wechat.util.io;
 
 import com.wechat.util.CommonConstant;
 import com.wechat.util.date.DateUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.RandomUtils;
-
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.util.*;
 
@@ -26,7 +25,7 @@ public class FileUtil {
 		String random_suffix = null;
 		do{
 			//生成长整型的随机数字
-			random_num = new Long(RandomUtils.nextLong());
+			random_num = new Long(RandomUtils.nextLong(0,9));
 			if(random_num.toString().length() >= 8){
 				//此算法在访问比较密集时比较容易引起文件名命名冲突
 				//random_suffix = random_num.toString().substring(random_num.toString().length() -7 , random_num.toString().length() - 1);
