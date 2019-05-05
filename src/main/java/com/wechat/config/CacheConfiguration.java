@@ -107,7 +107,7 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * 设置过期时间
      */
-    private String expires;
+    private String expires="weixinjsapi:7200";
 
     @Bean
     public KeyGenerator defaultKeyGenerator() {
@@ -336,9 +336,5 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     @Value("${spring.redis.cacheableDefaultExpSec}")
     public void setCacheableDefaultExpSec(int cacheableDefaultExpSec) {
         this.cacheableDefaultExpSec = cacheableDefaultExpSec;
-    }
-    @Value("${spring.redis.expires}")
-    public void setExpires(String expires) {
-        this.expires = expires;
     }
 }
