@@ -107,7 +107,6 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * 设置过期时间
      */
-    @Value("${spring.redis.expires}")
     private String expires;
 
     @Bean
