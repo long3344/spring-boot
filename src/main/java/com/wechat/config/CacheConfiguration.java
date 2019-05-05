@@ -58,8 +58,8 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * sentinel节点，逗号分隔，格式如：172.20.10.192:26379,172.20.10.193:26379
      */
-    @Value("${spring.redis.sentinel.nodes}")
-    private String nodes;
+    //@Value("${spring.redis.sentinel.nodes}")
+    private String nodes="";
 
     /**
      * 连接超时时间，单位：毫秒
