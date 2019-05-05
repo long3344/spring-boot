@@ -37,8 +37,8 @@ public class ExportServiceImpl implements ExportService,ApplicationContextAware 
 
     private ApplicationContext  context;
 
-    @Value("${report.temp_dir}")
-    private String temp_dir;
+    //@Value("${report.temp_dir}")
+    private String temp_dir="/usr/local";
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
