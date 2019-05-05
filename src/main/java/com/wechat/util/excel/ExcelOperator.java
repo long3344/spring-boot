@@ -2,7 +2,7 @@ package com.wechat.util.excel;
 
 import com.wechat.util.CommonConstant;
 import com.wechat.util.io.FileUtil;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Sheet;
