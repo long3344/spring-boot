@@ -52,68 +52,57 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     /**
      * redis sentinel master 名称，通常配置在sentinel.conf中
      */
-    //@Value("${spring.redis.sentinel.master}")
     private String master="mymaster";
 
     /**
      * sentinel节点，逗号分隔，格式如：172.20.10.192:26379,172.20.10.193:26379
      */
-    //@Value("${spring.redis.sentinel.nodes}")
     private String nodes="";
 
     /**
      * 连接超时时间，单位：毫秒
      */
-    @Value("${spring.redis.timeout}")
     private int timeout;
 
     /**
      * 最小空闲连接数
      */
-    @Value("${spring.redis.pool.min-idle}")
     private int minIdle;
 
     /**
      * 最大空闲连接数
      */
-    @Value("${spring.redis.pool.max-idle}")
     private int maxIdle;
 
     /**
      * 最大激活连接数
      */
-    @Value("${spring.redis.pool.max-active}")
     private int maxActive;
 
     /**
      * 最大等待毫秒数
      */
-    @Value("${spring.redis.pool.max-wait}")
     private long maxWaitMillis;
 
     /**
      * redis主机ip
      *
      */
-    @Value("${spring.redis.host}")
     private String host;
 
     /**
      * redis端口
      */
-    @Value("${spring.redis.port}")
     private int port;
 
     /**
      * redis密码
      */
-    @Value("${spring.redis.password}")
     private String password;
 
     /**
      * 通过@Cacheable代理的缓存默认失效时间(单位：秒)
      */
-    @Value("${spring.redis.cacheableDefaultExpSec}")
     private int cacheableDefaultExpSec;
     /**
      * 设置过期时间
@@ -303,4 +292,54 @@ public class CacheConfiguration extends CachingConfigurerSupport {
         topinContainer.addMessageListener(keyExpiresMessageListener(),topicSet);
         return topinContainer;
     }*/
+    
+     @Value("${spring.redis.sentinel.master}")
+    public void setMaster(String master) {
+        this.master = master;
+    }
+    @Value("${spring.redis.sentinel.nodes}")
+    public void setNodes(String nodes) {
+        this.nodes = nodes;
+    }
+    @Value("${spring.redis.timeout}")
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    @Value("${spring.redis.pool.min-idle}")
+    public void setMinIdle(int minIdle) {
+        this.minIdle = minIdle;
+    }
+    @Value("${spring.redis.pool.max-idle}")
+    public void setMaxIdle(int maxIdle) {
+        this.maxIdle = maxIdle;
+    }
+    @Value("${spring.redis.pool.max-active}")
+    public void setMaxActive(int maxActive) {
+        this.maxActive = maxActive;
+    }
+    @Value("${spring.redis.pool.max-wait}")
+    public void setMaxWaitMillis(long maxWaitMillis) {
+        this.maxWaitMillis = maxWaitMillis;
+    }
+    @Value("${spring.redis.host}")
+    public void setHost(String host) {
+        this.host = host;
+    }
+    @Value("${spring.redis.port}")
+    public void setPort(int port) {
+        this.port = port;
+    }
+    @Value("${spring.redis.password}")
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @Value("${spring.redis.cacheableDefaultExpSec}")
+    public void setCacheableDefaultExpSec(int cacheableDefaultExpSec) {
+        this.cacheableDefaultExpSec = cacheableDefaultExpSec;
+    }
+    @Value("${spring.redis.expires}")
+    public void setExpires(String expires) {
+        this.expires = expires;
+    }
 }
