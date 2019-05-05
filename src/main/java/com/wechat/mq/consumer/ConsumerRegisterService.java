@@ -12,7 +12,7 @@ import com.alibaba.rocketmq.common.protocol.heartbeat.SubscriptionData;
 import com.wechat.annotation.MsgConsumer;
 import com.wechat.mq.MQProducerConfig;
 import com.wechat.mq.MsgConsumeException;
-import java.util.Arrays;
+import org.apache.commons.lang.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
