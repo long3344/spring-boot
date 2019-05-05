@@ -270,11 +270,6 @@
             <artifactId>commons-lang</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>3.5.8</version>
-        </dependency>
 <!--logback-->
         <dependency>
             <groupId>org.slf4j</groupId>
