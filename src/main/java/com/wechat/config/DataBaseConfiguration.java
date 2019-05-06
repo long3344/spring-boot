@@ -54,18 +54,23 @@ public class DataBaseConfiguration implements EnvironmentAware {
     //注册dataSource
     @Bean(initMethod = "init", destroyMethod = "close")
     public DruidDataSource dataSource() throws SQLException {
-        if (StringUtils.isEmpty(resolver.getProperty("url"))) {
+        /*if (StringUtils.isEmpty(resolver.getProperty("url"))) {
             logger.error("Your database connection pool configuration is incorrect!"
                     + " Please check your Spring profile, current profiles are:"
                     + Arrays.toString(env.getActiveProfiles()));
             throw new ApplicationContextException(
                     "Database connection pool is not configured correctly");
-        }
+        }*/
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setDriverClassName(resolver.getProperty("driverClassName"));
+        /*druidDataSource.setDriverClassName(resolver.getProperty("driverClassName"));
         druidDataSource.setUrl(resolver.getProperty("url"));
         druidDataSource.setUsername(resolver.getProperty("username"));
-        druidDataSource.setPassword(resolver.getProperty("password"));
+        druidDataSource.setPassword(resolver.getProperty("password"));*/
+        druidDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        druidDataSource.setUrl("jdbc:mysql://47.98.101.128:3306/wechat?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=true");
+        druidDataSource.setUsername("root");
+        druidDataSource.setPassword("123456");
+        druidDataSource.setFilters("stat,slf4j,wall");
         /*druidDataSource.setInitialSize(Integer.parseInt(resolver.getProperty("initialSize")));
         druidDataSource.setMinIdle(Integer.parseInt(resolver.getProperty("minIdle")));
         druidDataSource.setMaxActive(Integer.parseInt(resolver.getProperty("maxActive")));
@@ -78,7 +83,7 @@ public class DataBaseConfiguration implements EnvironmentAware {
         druidDataSource.setTestOnReturn(Boolean.parseBoolean(resolver.getProperty("testOnReturn")));
         druidDataSource.setPoolPreparedStatements(Boolean.parseBoolean(resolver.getProperty("poolPreparedStatements")));
         druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(Integer.parseInt(resolver.getProperty("maxPoolPreparedStatementPerConnectionSize")));*/
-        druidDataSource.setFilters(resolver.getProperty("filters"));
+        //druidDataSource.setFilters(resolver.getProperty("filters"));
         return druidDataSource;
     }
 
