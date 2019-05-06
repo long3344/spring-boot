@@ -87,7 +87,7 @@ mybatis:
 logging:
       config : classpath:logback-boot.xml
 mq:
-  namesrvAddr: 127.0.0.1:9876
+  namesrvAddr: 47.98.101.128:9876
   producerGroup: CommonsProducer
   timeout: 3000
   retryTimes: 5
