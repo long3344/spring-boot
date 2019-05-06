@@ -1,6 +1,10 @@
 spring:
   profiles:
     active: dev
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/**
 #redis服务器相关配置
   redis:
       sentinel:
