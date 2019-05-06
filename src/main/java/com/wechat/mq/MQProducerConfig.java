@@ -20,12 +20,12 @@ public class MQProducerConfig {
     /**
      * 生产组
      */
-    private String producerGroup;
+    private String producerGroup="CommonsProducer";
 
     /**
      * RocketMQ名称服务器地址
      */
-    private String namesrvAddr;
+    private String namesrvAddr="47.98.101.128:9876";
 
     /**
      * 客户端地址，默认自动获取
