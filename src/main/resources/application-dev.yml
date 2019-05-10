@@ -4,7 +4,7 @@ spring:
   mvc:
     static-path-pattern: /resources/**
   resources:
-    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+    static-locations: classpath:/statics,classpath:/public,classpath:/resources,classpath:/META-INF/resources
 #redis服务器相关配置
   redis:
       sentinel:
