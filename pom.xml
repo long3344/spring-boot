@@ -337,6 +337,13 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.wechat.SpringBoot</mainClass>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>lib/</classpathPrefix>
+                            </manifest>
+                        </archive>
                     </configuration>
                 </plugin>
                 <!--thymeleaf热部署插件-->
