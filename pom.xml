@@ -7,7 +7,7 @@
     <groupId>spring_boot</groupId>
     <artifactId>spring_boot</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
 
     <parent>
@@ -337,13 +337,6 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
-                        <archive>
-                            <manifest>
-                                <mainClass>com.wechat.SpringBoot</mainClass>
-                                <addClasspath>true</addClasspath>
-                                <classpathPrefix>lib/</classpathPrefix>
-                            </manifest>
-                        </archive>
                     </configuration>
                 </plugin>
                 <!--thymeleaf热部署插件-->
