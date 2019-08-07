@@ -1,10 +1,6 @@
 spring:
   profiles:
     active: dev
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/**
 #redis服务器相关配置
   redis:
       sentinel:
@@ -62,7 +58,7 @@ spring:
   # Server settings
   #  项目启动地址：http://localhost:8080/wechat/toLogin
 server:
-  port: 8081
+  port: 8080
   address: 127.0.0.1
   contextPath: /
       # Tomcat特性相关
